@@ -2,10 +2,15 @@ package sample
 
 import (
 	"math/rand"
+	"time"
 
 	"github.com/ctirouzh/gRPC/pb"
 	"github.com/google/uuid"
 )
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
 
 func randomID() string {
 	return uuid.New().String()
