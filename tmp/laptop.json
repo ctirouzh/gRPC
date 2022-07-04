@@ -1,25 +1,25 @@
 {
-  "id": "9e8ac429-8a03-4a63-9dc1-cdc1d244890a",
-  "brand": "Dell",
-  "name": "Vostro",
+  "id": "06fbc562-0f4f-49ef-bdbe-3e66df1b8a9d",
+  "brand": "Apple",
+  "name": "Macbook Air",
   "cpu": {
-    "brand": "Intel",
-    "name": "Core i3-1005G1",
-    "number_cores": 6,
-    "number_threads": 11,
-    "min_ghz": 2.27359253829215,
-    "max_ghz": 3.1097061286717267
+    "brand": "AMD",
+    "name": "Ryzen 3 PRO 3200GE",
+    "number_cores": 8,
+    "number_threads": 10,
+    "min_ghz": 3.053905399653989,
+    "max_ghz": 4.136562315239022
   },
   "ram": {
-    "value": "33",
+    "value": "38",
     "unit": "GIGABYTE"
   },
   "gpus": [
     {
-      "brand": "Nvidia",
-      "name": "RTX 2060",
-      "min_ghz": 1.3406392427622675,
-      "max_ghz": 1.444852643505388,
+      "brand": "AMD",
+      "name": "RX 590",
+      "min_ghz": 1.1874675515975788,
+      "max_ghz": 1.284815817736051,
       "memory": {
         "value": "5",
         "unit": "GIGABYTE"
@@ -30,7 +30,7 @@
     {
       "driver": "SSD",
       "memory": {
-        "value": "649",
+        "value": "897",
         "unit": "GIGABYTE"
       }
     },
@@ -43,20 +43,20 @@
     }
   ],
   "screen": {
-    "size_inch": 15.284351,
+    "size_inch": 14.733661,
     "resolution": {
-      "width": 3628,
-      "height": 2041
+      "width": 4417,
+      "height": 2485
     },
-    "panel": "OLED",
-    "multitouch": false
+    "panel": "IPS",
+    "multitouch": true
   },
   "keyboard": {
-    "layout": "QWERTY",
+    "layout": "QWERTZ",
     "backlit": false
   },
-  "weight_kg": 1.2468407283998368,
-  "price_usd": 2461.4653864343145,
-  "release_year": 2017,
-  "updated_at": "2022-07-03T21:37:55.488948677Z"
+  "weight_kg": 2.9904370323099254,
+  "price_usd": 1841.0456272082365,
+  "release_year": 2018,
+  "updated_at": "2022-07-04T18:04:56.263870002Z"
 }
