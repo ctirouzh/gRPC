@@ -1,62 +1,62 @@
 {
-  "id": "b091cc2f-a79e-4072-8d83-9baf11b0c02f",
-  "brand": "Apple",
-  "name": "Macbook Air",
-  "cpu": {
-    "brand": "Intel",
-    "name": "Core i9-9980HK",
-    "number_cores": 8,
-    "number_threads": 9,
-    "min_ghz": 3.461974407045376,
-    "max_ghz": 4.880481603663307
+  "id":  "0ff506d1-084e-41b8-834f-7f949fdd31cc",
+  "brand":  "Apple",
+  "name":  "Macbook Pro",
+  "cpu":  {
+    "brand":  "Intel",
+    "name":  "Xeon E-2286M",
+    "number_cores":  5,
+    "number_threads":  6,
+    "min_ghz":  3.002353919140747,
+    "max_ghz":  4.122452296806444
   },
-  "ram": {
-    "value": "30",
-    "unit": "GIGABYTE"
+  "ram":  {
+    "value":  "64",
+    "unit":  "GIGABYTE"
   },
-  "gpus": [
+  "gpus":  [
     {
-      "brand": "Nvidia",
-      "name": "GTX 1070",
-      "min_ghz": 1.1507473161588864,
-      "max_ghz": 1.3683913118413187,
-      "memory": {
-        "value": "5",
-        "unit": "GIGABYTE"
+      "brand":  "Nvidia",
+      "name":  "RTX 2070",
+      "min_ghz":  1.2367749660015936,
+      "max_ghz":  1.4032347723885361,
+      "memory":  {
+        "value":  "6",
+        "unit":  "GIGABYTE"
       }
     }
   ],
-  "storages": [
+  "storages":  [
     {
-      "driver": "SSD",
-      "memory": {
-        "value": "200",
-        "unit": "GIGABYTE"
+      "driver":  "SSD",
+      "memory":  {
+        "value":  "452",
+        "unit":  "GIGABYTE"
       }
     },
     {
-      "driver": "HDD",
-      "memory": {
-        "value": "6",
-        "unit": "TERABYTE"
+      "driver":  "HDD",
+      "memory":  {
+        "value":  "6",
+        "unit":  "TERABYTE"
       }
     }
   ],
-  "screen": {
-    "size_inch": 14.7914915,
-    "resolution": {
-      "width": 5352,
-      "height": 3011
+  "screen":  {
+    "size_inch":  15.3701315,
+    "resolution":  {
+      "width":  3061,
+      "height":  1722
     },
-    "panel": "OLED",
-    "multitouch": false
+    "panel":  "IPS",
+    "multitouch":  true
   },
-  "keyboard": {
-    "layout": "QWERTZ",
-    "backlit": false
+  "keyboard":  {
+    "layout":  "QWERTZ",
+    "backlit":  true
   },
-  "weight_kg": 2.661014454793244,
-  "price_usd": 3141.628679248987,
-  "release_year": 2018,
-  "updated_at": "2022-07-05T10:15:45.539406289Z"
+  "weight_kg":  1.4491169057709077,
+  "price_usd":  3265.739013709016,
+  "release_year":  2015,
+  "updated_at":  "2022-07-05T12:43:02.079038558Z"
 }
