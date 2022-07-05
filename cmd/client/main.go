@@ -29,7 +29,69 @@ func main() {
 	}
 
 	laptopClient := pb.NewLaptopServiceClient(conn)
-	testUploadImage(laptopClient)
+
+	scenario := 3
+	switch scenario {
+	case 1:
+		testCreateLaptop(laptopClient)
+	case 2:
+		testSearchLaptop(laptopClient)
+	case 3:
+		testUploadImage(laptopClient)
+	default:
+		log.Print("EOF: send a request to the server...")
+	}
+}
+
+func testCreateLaptop(laptopClient pb.LaptopServiceClient) {
+	createLaptop(laptopClient, sample.NewLaptop())
+}
+
+func testSearchLaptop(laptopClient pb.LaptopServiceClient) {
+	for i := 0; i < 10; i++ {
+		// laptopClient.CreateLaptop(sample.NewLaptop())
+		createLaptop(laptopClient, sample.NewLaptop())
+	}
+
+	filter := &pb.Filter{
+		MaxPriceUsd: 3000,
+		MinCpuCores: 4,
+		MinCpuGhz:   2.5,
+		MinRam:      &pb.Memory{Value: 8, Unit: pb.Memory_GIGABYTE},
+	}
+
+	searchLaptop(laptopClient, filter)
+}
+
+func testUploadImage(laptopClient pb.LaptopServiceClient) {
+	laptop := sample.NewLaptop()
+	createLaptop(laptopClient, laptop)
+	uploadImage(laptopClient, laptop.GetId(), "tmp/laptop.jpg")
+}
+
+func createLaptop(laptopClient pb.LaptopServiceClient, laptop *pb.Laptop) {
+
+	req := &pb.CreateLaptopRequest{
+		Laptop: laptop,
+	}
+
+	// set timeout
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	res, err := laptopClient.CreateLaptop(ctx, req)
+	if err != nil {
+		st, ok := status.FromError(err)
+		if ok && st.Code() == codes.AlreadyExists {
+			// not a big deal
+			log.Print("laptop already exists")
+		} else {
+			log.Fatal("cannot create laptop: ", err)
+		}
+		return
+	}
+
+	log.Printf("created laptop with id: %s", res.Id)
 }
 
 func searchLaptop(laptopClient pb.LaptopServiceClient, filter *pb.Filter) {
@@ -62,31 +124,6 @@ func searchLaptop(laptopClient pb.LaptopServiceClient, filter *pb.Filter) {
 		log.Print("  + ram: ", laptop.GetRam())
 		log.Print("  + price: ", laptop.GetPriceUsd())
 	}
-}
-
-func createLaptop(laptopClient pb.LaptopServiceClient, laptop *pb.Laptop) {
-
-	req := &pb.CreateLaptopRequest{
-		Laptop: laptop,
-	}
-
-	// set timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	res, err := laptopClient.CreateLaptop(ctx, req)
-	if err != nil {
-		st, ok := status.FromError(err)
-		if ok && st.Code() == codes.AlreadyExists {
-			// not a big deal
-			log.Print("laptop already exists")
-		} else {
-			log.Fatal("cannot create laptop: ", err)
-		}
-		return
-	}
-
-	log.Printf("created laptop with id: %s", res.Id)
 }
 
 func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath string) {
@@ -148,16 +185,4 @@ func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath
 	}
 
 	log.Printf("image uploaded with id: %s, size: %d", res.GetId(), res.GetSize())
-}
-
-func testCreateLaptop(laptopClient pb.LaptopServiceClient) {
-	createLaptop(laptopClient, sample.NewLaptop())
-}
-
-// func testSearchLaptop(laptopClient pb.LaptopServiceClient) {}
-
-func testUploadImage(laptopClient pb.LaptopServiceClient) {
-	laptop := sample.NewLaptop()
-	createLaptop(laptopClient, laptop)
-	uploadImage(laptopClient, laptop.GetId(), "tmp/laptop.jpg")
 }

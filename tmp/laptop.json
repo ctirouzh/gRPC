@@ -1,27 +1,27 @@
 {
-  "id":  "ac229f5a-345b-4edc-9e17-9a28fed808c9",
+  "id":  "a4d209bb-c1bf-4087-bd62-a671f35d4186",
   "brand":  "Lenovo",
   "name":  "Thinkpad P1",
   "cpu":  {
     "brand":  "Intel",
-    "name":  "Core i9-9980HK",
-    "number_cores":  8,
+    "name":  "Core i7-9750H",
+    "number_cores":  6,
     "number_threads":  11,
-    "min_ghz":  2.7916129088133905,
-    "max_ghz":  3.6766889926820694
+    "min_ghz":  2.234521488447838,
+    "max_ghz":  4.13022255077245
   },
   "ram":  {
-    "value":  "47",
+    "value":  "15",
     "unit":  "GIGABYTE"
   },
   "gpus":  [
     {
-      "brand":  "Nvidia",
-      "name":  "GTX 1660-Ti",
-      "min_ghz":  1.2630284357350703,
-      "max_ghz":  1.790235443507497,
+      "brand":  "AMD",
+      "name":  "RX 5700-XT",
+      "min_ghz":  1.369516615814131,
+      "max_ghz":  1.4066093161352373,
       "memory":  {
-        "value":  "3",
+        "value":  "5",
         "unit":  "GIGABYTE"
       }
     }
@@ -30,33 +30,33 @@
     {
       "driver":  "SSD",
       "memory":  {
-        "value":  "670",
+        "value":  "498",
         "unit":  "GIGABYTE"
       }
     },
     {
       "driver":  "HDD",
       "memory":  {
-        "value":  "5",
+        "value":  "6",
         "unit":  "TERABYTE"
       }
     }
   ],
   "screen":  {
-    "size_inch":  13.695766,
+    "size_inch":  14.357717,
     "resolution":  {
-      "width":  3121,
-      "height":  1756
+      "width":  5025,
+      "height":  2827
     },
     "panel":  "OLED",
-    "multitouch":  false
+    "multitouch":  true
   },
   "keyboard":  {
-    "layout":  "AZERTY",
+    "layout":  "QWERTY",
     "backlit":  false
   },
-  "weight_kg":  2.8626473838230027,
-  "price_usd":  3062.5336251142753,
+  "weight_kg":  2.1970038796407656,
+  "price_usd":  1594.997273049376,
   "release_year":  2019,
-  "updated_at":  "2022-07-05T18:14:41.903009381Z"
+  "updated_at":  "2022-07-05T19:16:18.014077745Z"
 }
