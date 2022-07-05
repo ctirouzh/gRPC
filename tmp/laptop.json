@@ -1,27 +1,27 @@
 {
-  "id":  "52b2f262-13da-42bb-a274-1649f37d2369",
+  "id":  "ac229f5a-345b-4edc-9e17-9a28fed808c9",
   "brand":  "Lenovo",
-  "name":  "Thinkpad P53",
+  "name":  "Thinkpad P1",
   "cpu":  {
-    "brand":  "AMD",
-    "name":  "Ryzen 5 PRO 3500U",
-    "number_cores":  2,
-    "number_threads":  6,
-    "min_ghz":  3.2662406838288653,
-    "max_ghz":  3.5216122274848196
+    "brand":  "Intel",
+    "name":  "Core i9-9980HK",
+    "number_cores":  8,
+    "number_threads":  11,
+    "min_ghz":  2.7916129088133905,
+    "max_ghz":  3.6766889926820694
   },
   "ram":  {
-    "value":  "14",
+    "value":  "47",
     "unit":  "GIGABYTE"
   },
   "gpus":  [
     {
-      "brand":  "AMD",
-      "name":  "RX 580",
-      "min_ghz":  1.3818780611572614,
-      "max_ghz":  1.9734827462856686,
+      "brand":  "Nvidia",
+      "name":  "GTX 1660-Ti",
+      "min_ghz":  1.2630284357350703,
+      "max_ghz":  1.790235443507497,
       "memory":  {
-        "value":  "5",
+        "value":  "3",
         "unit":  "GIGABYTE"
       }
     }
@@ -30,33 +30,33 @@
     {
       "driver":  "SSD",
       "memory":  {
-        "value":  "660",
+        "value":  "670",
         "unit":  "GIGABYTE"
       }
     },
     {
       "driver":  "HDD",
       "memory":  {
-        "value":  "2",
+        "value":  "5",
         "unit":  "TERABYTE"
       }
     }
   ],
   "screen":  {
-    "size_inch":  14.18138,
+    "size_inch":  13.695766,
     "resolution":  {
-      "width":  6289,
-      "height":  3538
+      "width":  3121,
+      "height":  1756
     },
-    "panel":  "IPS",
-    "multitouch":  true
+    "panel":  "OLED",
+    "multitouch":  false
   },
   "keyboard":  {
-    "layout":  "QWERTZ",
+    "layout":  "AZERTY",
     "backlit":  false
   },
-  "weight_kg":  2.992028187764933,
-  "price_usd":  1730.4357617243113,
-  "release_year":  2016,
-  "updated_at":  "2022-07-05T17:48:05.700314396Z"
+  "weight_kg":  2.8626473838230027,
+  "price_usd":  3062.5336251142753,
+  "release_year":  2019,
+  "updated_at":  "2022-07-05T18:14:41.903009381Z"
 }
