@@ -18,7 +18,8 @@ import (
 func TestClientCreateLaptop(t *testing.T) {
 	t.Parallel()
 	laptopStore := service.NewInMemoryLaptopStore()
-	_, serverAddress := startTestLaptopServer(t, laptopStore)
+	imageStore := service.NewDiskImageStore("img")
+	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	laptop := sample.NewLaptop()
@@ -49,7 +50,8 @@ func TestClientSearchLaptop(t *testing.T) {
 		MinRam:      &pb.Memory{Value: 8, Unit: pb.Memory_GIGABYTE},
 	}
 
-	store := service.NewInMemoryLaptopStore()
+	laptopStore := service.NewInMemoryLaptopStore()
+	imageStore := service.NewDiskImageStore("img")
 	expectedIDs := make(map[string]bool)
 
 	for i := 0; i < 6; i++ {
@@ -80,10 +82,10 @@ func TestClientSearchLaptop(t *testing.T) {
 			expectedIDs[laptop.Id] = true
 		}
 
-		err := store.Save(laptop)
+		err := laptopStore.Save(laptop)
 		require.NoError(t, err)
 	}
-	_, serverAddress := startTestLaptopServer(t, store)
+	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	req := &pb.SearchLaptopRequest{Filter: filter}
@@ -103,8 +105,12 @@ func TestClientSearchLaptop(t *testing.T) {
 	require.Equal(t, len(expectedIDs), found)
 }
 
-func startTestLaptopServer(t *testing.T, store service.LaptopStore) (*service.LaptopServer, string) {
-	laptopServer := service.NewLaptopServer(store)
+func startTestLaptopServer(
+	t *testing.T,
+	laptopStore service.LaptopStore,
+	imageStore service.ImageStore,
+) (*service.LaptopServer, string) {
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore)
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
