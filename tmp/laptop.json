@@ -1,27 +1,27 @@
 {
-  "id": "06fbc562-0f4f-49ef-bdbe-3e66df1b8a9d",
+  "id": "c30e1618-8580-4728-b22d-36323750d876",
   "brand": "Apple",
-  "name": "Macbook Air",
+  "name": "Macbook Pro",
   "cpu": {
-    "brand": "AMD",
-    "name": "Ryzen 3 PRO 3200GE",
-    "number_cores": 8,
-    "number_threads": 10,
-    "min_ghz": 3.053905399653989,
-    "max_ghz": 4.136562315239022
+    "brand": "Intel",
+    "name": "Xeon E-2286M",
+    "number_cores": 2,
+    "number_threads": 8,
+    "min_ghz": 3.2304668780995525,
+    "max_ghz": 3.3468246201659118
   },
   "ram": {
-    "value": "38",
+    "value": "43",
     "unit": "GIGABYTE"
   },
   "gpus": [
     {
-      "brand": "AMD",
-      "name": "RX 590",
-      "min_ghz": 1.1874675515975788,
-      "max_ghz": 1.284815817736051,
+      "brand": "Nvidia",
+      "name": "RTX 2060",
+      "min_ghz": 1.3258350665022842,
+      "max_ghz": 1.7713503520974943,
       "memory": {
-        "value": "5",
+        "value": "4",
         "unit": "GIGABYTE"
       }
     }
@@ -30,33 +30,33 @@
     {
       "driver": "SSD",
       "memory": {
-        "value": "897",
+        "value": "746",
         "unit": "GIGABYTE"
       }
     },
     {
       "driver": "HDD",
       "memory": {
-        "value": "4",
+        "value": "2",
         "unit": "TERABYTE"
       }
     }
   ],
   "screen": {
-    "size_inch": 14.733661,
+    "size_inch": 15.464281,
     "resolution": {
-      "width": 4417,
-      "height": 2485
+      "width": 5824,
+      "height": 3276
     },
     "panel": "IPS",
-    "multitouch": true
+    "multitouch": false
   },
   "keyboard": {
-    "layout": "QWERTZ",
-    "backlit": false
+    "layout": "AZERTY",
+    "backlit": true
   },
-  "weight_kg": 2.9904370323099254,
-  "price_usd": 1841.0456272082365,
-  "release_year": 2018,
-  "updated_at": "2022-07-04T18:04:56.263870002Z"
+  "weight_kg": 1.0049919715369395,
+  "price_usd": 3427.6207010756534,
+  "release_year": 2017,
+  "updated_at": "2022-07-04T19:40:23.636943702Z"
 }
