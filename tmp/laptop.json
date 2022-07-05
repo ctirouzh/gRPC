@@ -1,27 +1,27 @@
 {
-  "id":  "9717d6e0-a84c-4b4d-bfb8-533c7db27d91",
-  "brand":  "Apple",
-  "name":  "Macbook Pro",
+  "id":  "52b2f262-13da-42bb-a274-1649f37d2369",
+  "brand":  "Lenovo",
+  "name":  "Thinkpad P53",
   "cpu":  {
-    "brand":  "Intel",
-    "name":  "Xeon E-2286M",
-    "number_cores":  6,
-    "number_threads":  10,
-    "min_ghz":  2.4519048384567337,
-    "max_ghz":  2.5944384308757833
+    "brand":  "AMD",
+    "name":  "Ryzen 5 PRO 3500U",
+    "number_cores":  2,
+    "number_threads":  6,
+    "min_ghz":  3.2662406838288653,
+    "max_ghz":  3.5216122274848196
   },
   "ram":  {
-    "value":  "22",
+    "value":  "14",
     "unit":  "GIGABYTE"
   },
   "gpus":  [
     {
       "brand":  "AMD",
-      "name":  "RX 590",
-      "min_ghz":  1.0176291768602013,
-      "max_ghz":  1.731250848058731,
+      "name":  "RX 580",
+      "min_ghz":  1.3818780611572614,
+      "max_ghz":  1.9734827462856686,
       "memory":  {
-        "value":  "6",
+        "value":  "5",
         "unit":  "GIGABYTE"
       }
     }
@@ -30,33 +30,33 @@
     {
       "driver":  "SSD",
       "memory":  {
-        "value":  "1001",
+        "value":  "660",
         "unit":  "GIGABYTE"
       }
     },
     {
       "driver":  "HDD",
       "memory":  {
-        "value":  "3",
+        "value":  "2",
         "unit":  "TERABYTE"
       }
     }
   ],
   "screen":  {
-    "size_inch":  13.185335,
+    "size_inch":  14.18138,
     "resolution":  {
-      "width":  3925,
-      "height":  2208
+      "width":  6289,
+      "height":  3538
     },
-    "panel":  "OLED",
-    "multitouch":  false
+    "panel":  "IPS",
+    "multitouch":  true
   },
   "keyboard":  {
     "layout":  "QWERTZ",
     "backlit":  false
   },
-  "weight_kg":  2.0328985212540873,
-  "price_usd":  2710.172782043792,
-  "release_year":  2019,
-  "updated_at":  "2022-07-05T17:29:34.878783565Z"
+  "weight_kg":  2.992028187764933,
+  "price_usd":  1730.4357617243113,
+  "release_year":  2016,
+  "updated_at":  "2022-07-05T17:48:05.700314396Z"
 }

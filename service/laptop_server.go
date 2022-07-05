@@ -130,6 +130,11 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	imageSize := 0
 
 	for {
+		err := contextError(stream.Context())
+		if err != nil {
+			return err
+		}
+
 		log.Print("waiting to receive more data")
 
 		req, err := stream.Recv()
@@ -150,6 +155,8 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 		if imageSize > maxImageSize {
 			return logError(status.Errorf(codes.InvalidArgument, "image is too large: %d > %d", imageSize, maxImageSize))
 		}
+		// write slowly (for testing codes.DeadlineExceeded)
+		// time.Sleep(time.Second)
 		_, err = imageData.Write(chunk)
 		if err != nil {
 			return logError(status.Errorf(codes.Internal, "cannot write chunk data: %v", err))
@@ -182,4 +189,15 @@ func logError(err error) error {
 		log.Print(err)
 	}
 	return err
+}
+
+func contextError(ctx context.Context) error {
+	switch ctx.Err() {
+	case context.Canceled:
+		return logError(status.Error(codes.Canceled, "request is canceled"))
+	case context.DeadlineExceeded:
+		return logError(status.Error(codes.DeadlineExceeded, "deadline is exceeded"))
+	default:
+		return nil
+	}
 }

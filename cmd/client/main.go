@@ -148,7 +148,6 @@ func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath
 	}
 
 	log.Printf("image uploaded with id: %s, size: %d", res.GetId(), res.GetSize())
-
 }
 
 func testCreateLaptop(laptopClient pb.LaptopServiceClient) {
