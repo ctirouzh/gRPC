@@ -18,6 +18,14 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+type scenario int
+
+const (
+	CLIENT_CAN_CREATE_LAPTOP scenario = iota + 1
+	CLIENT_CAN_SEARCH_IN_LAPTOPS
+	CLIENT_CAN_UPLOAD_LAPTOP_IMAGE
+)
+
 func main() {
 	serverAddress := flag.String("address", "", "the server address")
 	flag.Parse()
@@ -30,7 +38,7 @@ func main() {
 
 	laptopClient := pb.NewLaptopServiceClient(conn)
 
-	scenario := 3
+	scenario := CLIENT_CAN_UPLOAD_LAPTOP_IMAGE
 	switch scenario {
 	case 1:
 		testCreateLaptop(laptopClient)
@@ -56,7 +64,7 @@ func testSearchLaptop(laptopClient pb.LaptopServiceClient) {
 	filter := &pb.Filter{
 		MaxPriceUsd: 3000,
 		MinCpuCores: 4,
-		MinCpuGhz:   2.5,
+		MinCpuGhz:   3.2,
 		MinRam:      &pb.Memory{Value: 8, Unit: pb.Memory_GIGABYTE},
 	}
 
