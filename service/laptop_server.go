@@ -184,6 +184,10 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	return nil
 }
 
+func (server *LaptopServer) RateLaptop(stream pb.LaptopService_RateLaptopServer) error {
+	return nil
+}
+
 func logError(err error) error {
 	if err != nil {
 		log.Print(err)
