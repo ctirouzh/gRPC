@@ -68,7 +68,8 @@ func TestServerCreateLaptop(t *testing.T) {
 				Laptop: tc.laptop,
 			}
 			imageStore := service.NewDiskImageStore("img")
-			server := service.NewLaptopServer(tc.store, imageStore)
+			ratingStore := service.NewInMemoryRatingStore()
+			server := service.NewLaptopServer(tc.store, imageStore, ratingStore)
 			res, err := server.CreateLaptop(context.Background(), req)
 			if tc.code == codes.OK {
 				require.NoError(t, err)

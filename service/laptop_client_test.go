@@ -23,7 +23,8 @@ func TestClientCreateLaptop(t *testing.T) {
 	t.Parallel()
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore("img")
-	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
+	ratingStore := service.NewInMemoryRatingStore()
+	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore, ratingStore)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	laptop := sample.NewLaptop()
@@ -56,6 +57,7 @@ func TestClientSearchLaptop(t *testing.T) {
 
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore("img")
+	ratingStore := service.NewInMemoryRatingStore()
 	expectedIDs := make(map[string]bool)
 
 	for i := 0; i < 6; i++ {
@@ -89,7 +91,7 @@ func TestClientSearchLaptop(t *testing.T) {
 		err := laptopStore.Save(laptop)
 		require.NoError(t, err)
 	}
-	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
+	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore, ratingStore)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	req := &pb.SearchLaptopRequest{Filter: filter}
@@ -116,12 +118,13 @@ func TestClientUploadImage(t *testing.T) {
 
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore(testImageFolder)
+	ratingStore := service.NewInMemoryRatingStore()
 
 	laptop := sample.NewLaptop()
 	err := laptopStore.Save(laptop)
 	require.NoError(t, err)
 
-	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
+	_, serverAddress := startTestLaptopServer(t, laptopStore, imageStore, ratingStore)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	imagePath := fmt.Sprintf("%s/laptop.jpg", testImageFolder)
@@ -182,8 +185,9 @@ func startTestLaptopServer(
 	t *testing.T,
 	laptopStore service.LaptopStore,
 	imageStore service.ImageStore,
+	ratingStore service.RatingStore,
 ) (*service.LaptopServer, string) {
-	laptopServer := service.NewLaptopServer(laptopStore, imageStore)
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore, ratingStore)
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
