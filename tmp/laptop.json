@@ -1,27 +1,27 @@
 {
-  "id":  "58cae4a3-696f-43c9-9abc-0f33b12fd3c8",
-  "brand":  "Dell",
-  "name":  "Alienware",
+  "id":  "a3c39d33-9630-492a-ab97-3336ccad1b13",
+  "brand":  "Lenovo",
+  "name":  "Thinkpad P53",
   "cpu":  {
-    "brand":  "AMD",
-    "name":  "Ryzen 7 PRO 2700U",
-    "number_cores":  8,
-    "number_threads":  8,
-    "min_ghz":  3.0814472693080397,
-    "max_ghz":  3.6062302448606065
+    "brand":  "Intel",
+    "name":  "Core i3-1005G1",
+    "number_cores":  7,
+    "number_threads":  12,
+    "min_ghz":  3.052108918953609,
+    "max_ghz":  3.3623671413834098
   },
   "ram":  {
-    "value":  "63",
+    "value":  "26",
     "unit":  "GIGABYTE"
   },
   "gpus":  [
     {
-      "brand":  "AMD",
-      "name":  "RX 590",
-      "min_ghz":  1.3068136989881993,
-      "max_ghz":  1.4260357313353462,
+      "brand":  "Nvidia",
+      "name":  "GTX 1660-Ti",
+      "min_ghz":  1.3865524301416707,
+      "max_ghz":  1.6045902811020256,
       "memory":  {
-        "value":  "5",
+        "value":  "3",
         "unit":  "GIGABYTE"
       }
     }
@@ -30,33 +30,33 @@
     {
       "driver":  "SSD",
       "memory":  {
-        "value":  "996",
+        "value":  "965",
         "unit":  "GIGABYTE"
       }
     },
     {
       "driver":  "HDD",
       "memory":  {
-        "value":  "5",
+        "value":  "1",
         "unit":  "TERABYTE"
       }
     }
   ],
   "screen":  {
-    "size_inch":  13.87659,
+    "size_inch":  14.600663,
     "resolution":  {
-      "width":  6192,
-      "height":  3483
+      "width":  6872,
+      "height":  3866
     },
-    "panel":  "OLED",
-    "multitouch":  true
+    "panel":  "IPS",
+    "multitouch":  false
   },
   "keyboard":  {
     "layout":  "QWERTZ",
-    "backlit":  true
+    "backlit":  false
   },
-  "weight_kg":  2.73155552546189,
-  "price_usd":  3145.0416141083406,
-  "release_year":  2017,
-  "updated_at":  "2022-07-06T19:54:49.702830878Z"
+  "weight_kg":  2.9407305960598347,
+  "price_usd":  3010.333202045539,
+  "release_year":  2018,
+  "updated_at":  "2022-07-06T20:58:49.804128877Z"
 }
