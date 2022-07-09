@@ -54,9 +54,11 @@ func main() {
 
 	laptopServer := service.NewLaptopServer(laptopStore, imageStore, ratingStore)
 	authServer := service.NewAuthServer(userStore, jwtManager)
+
+	interceptor := service.NewAuthInterceptor(jwtManager, accessibleRoles())
 	grpcServer := grpc.NewServer(
-		grpc.UnaryInterceptor(unaryInterceptor),
-		grpc.StreamInterceptor(streamInterceptor),
+		grpc.UnaryInterceptor(interceptor.Unary()),
+		grpc.StreamInterceptor(interceptor.Stream()),
 	)
 
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
@@ -94,4 +96,14 @@ func streamInterceptor(
 ) error {
 	log.Println("--> stream interceptor: ", info.FullMethod)
 	return handler(srv, stream)
+}
+
+func accessibleRoles() map[string][]string {
+	const laptopServicePath = "/techschool.pcbook.LaptopService/"
+
+	return map[string][]string{
+		laptopServicePath + "CreateLaptop": {"admin"},
+		laptopServicePath + "UploadImage":  {"admin"},
+		laptopServicePath + "RateLaptop":   {"admin", "user"},
+	}
 }
