@@ -9,12 +9,15 @@ import (
 )
 
 type AuthServer struct {
+	pb.UnimplementedAuthServiceServer
 	userStore  UserStore
 	jwtManager *JWTManager
 }
 
 func NewAuthServer(userStore UserStore, jwtManager *JWTManager) *AuthServer {
-	return &AuthServer{userStore, jwtManager}
+	return &AuthServer{
+		userStore:  userStore,
+		jwtManager: jwtManager}
 }
 
 func (server *AuthServer) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error) {

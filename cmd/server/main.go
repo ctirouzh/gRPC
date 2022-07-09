@@ -6,11 +6,50 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"github.com/ctirouzh/gRPC/pb"
 	"github.com/ctirouzh/gRPC/service"
 	"google.golang.org/grpc"
 )
+
+const (
+	secretKey     = "secret"
+	tokenDuration = 15 * time.Minute
+)
+
+func main() {
+	port := flag.Int("port", 0, "the server port")
+	flag.Parse()
+	log.Printf("start server on port %d", *port)
+
+	laptopStore := service.NewInMemoryLaptopStore()
+	imageStore := service.NewDiskImageStore("img")
+	ratingStore := service.NewInMemoryRatingStore()
+	userStore := service.NewInMemoryUserStore()
+	jwtManager := service.NewJWTManager(secretKey, tokenDuration)
+
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore, ratingStore)
+	authServer := service.NewAuthServer(userStore, jwtManager)
+	grpcServer := grpc.NewServer(
+		grpc.UnaryInterceptor(unaryInterceptor),
+		grpc.StreamInterceptor(streamInterceptor),
+	)
+
+	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
+	pb.RegisterAuthServiceServer(grpcServer, authServer)
+
+	address := fmt.Sprintf("0.0.0.0:%d", *port)
+	listener, err := net.Listen("tcp", address)
+	if err != nil {
+		log.Fatal("cannot start server: ", err)
+	}
+
+	err = grpcServer.Serve(listener)
+	if err != nil {
+		log.Fatal("cannot start server: ", err)
+	}
+}
 
 func unaryInterceptor(
 	ctx context.Context,
@@ -30,33 +69,4 @@ func streamInterceptor(
 ) error {
 	log.Println("--> stream interceptor: ", info.FullMethod)
 	return handler(srv, stream)
-}
-
-func main() {
-	port := flag.Int("port", 0, "the server port")
-	flag.Parse()
-	log.Printf("start server on port %d", *port)
-
-	laptopStore := service.NewInMemoryLaptopStore()
-	imageStore := service.NewDiskImageStore("img")
-	ratingStore := service.NewInMemoryRatingStore()
-	laptopServer := service.NewLaptopServer(laptopStore, imageStore, ratingStore)
-	// serverOptions := []grpc.ServerOption{}
-	grpcServer := grpc.NewServer(
-		grpc.UnaryInterceptor(unaryInterceptor),
-		grpc.StreamInterceptor(streamInterceptor),
-	)
-
-	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
-
-	address := fmt.Sprintf("0.0.0.0:%d", *port)
-	listener, err := net.Listen("tcp", address)
-	if err != nil {
-		log.Fatal("cannot start server: ", err)
-	}
-
-	err = grpcServer.Serve(listener)
-	if err != nil {
-		log.Fatal("cannot start server: ", err)
-	}
 }
