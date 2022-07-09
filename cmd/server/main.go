@@ -13,6 +13,22 @@ import (
 	"google.golang.org/grpc"
 )
 
+func seedUsers(userStore service.UserStore) error {
+	err := createUser(userStore, "admin1", "secret", "admin")
+	if err != nil {
+		return err
+	}
+	return createUser(userStore, "user1", "secret", "user")
+}
+
+func createUser(userStore service.UserStore, username, password, role string) error {
+	user, err := service.NewUser(username, password, role)
+	if err != nil {
+		return err
+	}
+	return userStore.Save(user)
+}
+
 const (
 	secretKey     = "secret"
 	tokenDuration = 15 * time.Minute
@@ -26,7 +42,13 @@ func main() {
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore("img")
 	ratingStore := service.NewInMemoryRatingStore()
+
 	userStore := service.NewInMemoryUserStore()
+	err := seedUsers(userStore)
+	if err != nil {
+		log.Fatal("cannot seed users: ", err)
+	}
+
 	jwtManager := service.NewJWTManager(secretKey, tokenDuration)
 
 	laptopServer := service.NewLaptopServer(laptopStore, imageStore, ratingStore)
